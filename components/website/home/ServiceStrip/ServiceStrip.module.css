@@ -1,0 +1,130 @@
+.stripSection {
+  width: 100%;
+  background: var(--color-bg-primary);
+  border-top: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
+  position: relative;
+  z-index: 2; /* Taake grid ke upar nazar aaye */
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.serviceItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+
+/* Icon Box */
+.iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-brand-primary);
+  flex-shrink: 0;
+}
+
+/* Text Content */
+.textContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: 0.2rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Right Number */
+.number {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Vertical Divider */
+.divider {
+  position: absolute;
+  right: 0;
+  top: 2rem;
+  bottom: 2rem;
+  width: 1px;
+  background-color: var(--color-border-light);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* 2 columns me har doosre item ke baad divider aur responsive borders */
+  .serviceItem:nth-child(2) .divider {
+    display: none;
+  }
+  
+  .serviceItem:nth-child(1),
+  .serviceItem:nth-child(2) {
+    border-bottom: 1px solid var(--color-border-light);
+  }
+  
+  .serviceItem:nth-child(3) .divider {
+    /* 3rd item ke baad divider right me rahega */
+    top: 2rem;
+    bottom: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  
+  .serviceItem {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .serviceItem:last-child {
+    border-bottom: none;
+  }
+  
+  /* Mobile pe divider ki zaroorat nahi */
+  .divider {
+    display: none;
+  }
+  
+  .number {
+    position: static;
+    transform: none;
+    margin-left: auto;
+    font-size: 0.75rem;
+  }
+}

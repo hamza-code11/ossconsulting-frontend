@@ -1,0 +1,141 @@
+"use client";
+
+import { useState } from "react";
+import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
+import styles from "./ContactCTA.module.css";
+
+export default function ContactCTA() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    service: "",
+    message: "",
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitted(true);
+      setFormData({ name: "", email: "", service: "", message: "" });
+      setTimeout(() => setSubmitted(false), 4000);
+    }, 1500);
+  };
+
+  return (
+    <section id="contact" className={styles.section}>
+      {/* Background Layers */}
+      <div className={styles.bgGrid} aria-hidden="true" />
+      <div className={styles.bgGlow} aria-hidden="true" />
+
+      <div className={styles.container}>
+        
+        {/* Left Side: Editorial Content */}
+        <div className={styles.content}>
+          <div className={styles.eyebrow}>
+            <span className={styles.eyebrowLine} />
+            START A CONVERSATION
+          </div>
+          
+          <h2 className={styles.title}>
+            Let's Discuss Your <br />
+            <span className={styles.titleAccent}>Business Needs.</span>
+          </h2>
+          
+          <p className={styles.description}>
+            Whatever stage your business is at, OSS Consulting can help you explore 
+            the services and solutions that fit your needs. One partner, every 
+            business possibility.
+          </p>
+
+          {/* Minimal Contact Info */}
+          <div className={styles.contactInfo}>
+            <div className={styles.contactRow}>
+              <Mail size={18} className={styles.contactIcon} />
+              <a href="mailto:hello@ossconsulting.com">hello@ossconsulting.com</a>
+            </div>
+            <div className={styles.contactRow}>
+              <Phone size={18} className={styles.contactIcon} />
+              <a href="tel:+1234567890">+1 (234) 567-890</a>
+            </div>
+            <div className={styles.contactRow}>
+              <MapPin size={18} className={styles.contactIcon} />
+              <span>Global Headquarters, New York</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side: Overlapping Form Card */}
+        <div className={styles.formCard}>
+          <div className={styles.formHeader}>
+            <h3 className={styles.formTitle}>Project Inquiry</h3>
+            <p className={styles.formSubtitle}>Fill out the form below and our team will reach out.</p>
+          </div>
+
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.inputRow}>
+              <div className={styles.inputGroup}>
+                <label className={styles.label}>Your Name</label>
+                <input 
+                  type="text" name="name" required 
+                  value={formData.name} onChange={handleChange} 
+                  className={styles.input} placeholder="John Doe" 
+                />
+              </div>
+              <div className={styles.inputGroup}>
+                <label className={styles.label}>Email Address</label>
+                <input 
+                  type="email" name="email" required 
+                  value={formData.email} onChange={handleChange} 
+                  className={styles.input} placeholder="john@company.com" 
+                />
+              </div>
+            </div>
+
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Service of Interest</label>
+              <select 
+                name="service" required 
+                value={formData.service} onChange={handleChange} 
+                className={styles.select}
+              >
+                <option value="" disabled>Select a service...</option>
+                <option value="Business">Business & Enterprise</option>
+                <option value="Technology">Technology & Software</option>
+                <option value="Marketing">Marketing & Growth</option>
+                <option value="Facility">Facility Services</option>
+              </select>
+            </div>
+
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Tell us about your project</label>
+              <textarea 
+                name="message" required rows={3}
+                value={formData.message} onChange={handleChange} 
+                className={styles.textarea} placeholder="Briefly describe your goals..."
+              />
+            </div>
+
+            <button type="submit" disabled={isSubmitting} className={styles.submitBtn}>
+              {isSubmitting ? "Sending..." : submitted ? "Inquiry Sent!" : "Submit Inquiry"}
+              {!isSubmitting && !submitted && <ArrowRight size={18} />}
+            </button>
+            
+            {submitted && (
+              <p className={styles.successMsg}>Thank you! Our team will contact you shortly.</p>
+            )}
+          </form>
+        </div>
+
+      </div>
+    </section>
+  );
+}

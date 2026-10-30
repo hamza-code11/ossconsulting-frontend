@@ -1,0 +1,159 @@
+
+/* =========================================
+   OSS CONSULTING — COLOR SYSTEM
+========================================= */
+
+:root {
+  color-scheme: light;
+
+  --color-grid: rgba(8, 60, 110, 0.05);
+
+  /* Backgrounds */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f5f8fc;
+  --color-bg-tertiary: #eaf2f9;
+  --color-bg-elevated: #ffffff;
+  --color-bg-overlay: rgba(8, 60, 110, 0.06);
+
+  /* Brand Colors */
+  --color-brand-primary: #083c6e;
+  --color-brand-secondary: #0d568f;
+  --color-brand-tertiary: #397eaf;
+  --color-brand-light: #eaf2f9;
+  --color-brand-subtle: #f2f7fc;
+
+  /* Text */
+  --color-text-primary: #242122;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #64748b;
+  --color-text-muted: #94a3b8;
+  --color-text-inverse: #ffffff;
+  --color-text-link: #083c6e;
+
+  /* Buttons */
+  --color-btn-primary-bg: #083c6e;
+  --color-btn-primary-hover: #062f57;
+  --color-btn-primary-text: #ffffff;
+
+  --color-btn-secondary-bg: #eaf2f9;
+  --color-btn-secondary-hover: #dceaf6;
+  --color-btn-secondary-text: #083c6e;
+
+  /* Borders */
+  --color-border: #e2e8f0;
+  --color-border-light: #edf1f5;
+  --color-border-strong: #cbd5e1;
+  --color-border-focus: #397eaf;
+
+  /* Icons */
+  --color-icon-default: #64748b;
+  --color-icon-primary: #083c6e;
+  --color-icon-inverse: #ffffff;
+
+  /* States */
+  --color-success: #15803d;
+  --color-success-bg: #f0fdf4;
+  --color-warning: #b45309;
+  --color-warning-bg: #fffbeb;
+  --color-error: #dc2626;
+  --color-error-bg: #fef2f2;
+  --color-info: #0369a1;
+  --color-info-bg: #f0f9ff;
+
+  /* Effects */
+  --color-overlay: rgba(15, 23, 42, 0.5);
+  --color-glass: rgba(255, 255, 255, 0.72);
+  --color-glass-border: rgba(255, 255, 255, 0.45);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-xl: 0 20px 50px rgba(15, 23, 42, 0.12);
+
+  /* Brand Shadows */
+  --shadow-brand: 0 8px 24px rgba(8, 60, 110, 0.16);
+}
+
+/* =========================================
+   DARK THEME
+========================================= */
+
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Grid color for dark mode */
+  --color-grid: rgba(255, 255, 255, 0.035);
+
+  /* Glass effects for dark mode */
+  --color-glass: rgba(18, 18, 18, 0.78);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+
+  /* Backgrounds */
+  --color-bg-primary: #090909;
+  --color-bg-secondary: #111111;
+  --color-bg-tertiary: #1a1a1a;
+  --color-bg-elevated: #151515;
+  --color-bg-overlay: rgba(0, 0, 0, 0.35);
+
+  /* Brand Colors */
+  --color-brand-primary: #5b9bd0;
+  --color-brand-secondary: #78b2e0;
+  --color-brand-tertiary: #a0c9e9;
+  --color-brand-light: #172b3d;
+  --color-brand-subtle: #101d29;
+
+  /* Text */
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #b3b3b3;
+  --color-text-tertiary: #858585;
+  --color-text-muted: #666666;
+  --color-text-inverse: #090909;
+  --color-text-link: #78b2e0;
+
+  /* Buttons */
+  --color-btn-primary-bg: #5b9bd0;
+  --color-btn-primary-hover: #78b2e0;
+  --color-btn-primary-text: #090909;
+
+  --color-btn-secondary-bg: #1c1c1c;
+  --color-btn-secondary-hover: #292929;
+  --color-btn-secondary-text: #a0c9e9;
+
+  /* Borders */
+  --color-border: #292929;
+  --color-border-light: #202020;
+  --color-border-strong: #3a3a3a;
+  --color-border-focus: #78b2e0;
+
+  /* Icons */
+  --color-icon-default: #999999;
+  --color-icon-primary: #78b2e0;
+  --color-icon-inverse: #090909;
+
+  /* States */
+  --color-success: #4ade80;
+  --color-success-bg: #14251a;
+  --color-warning: #fbbf24;
+  --color-warning-bg: #29200f;
+  --color-error: #f87171;
+  --color-error-bg: #2b1515;
+  --color-info: #38bdf8;
+  --color-info-bg: #10232c;
+
+  /* Effects */
+  --color-overlay: rgba(0, 0, 0, 0.75);
+  --color-glass: rgba(18, 18, 18, 0.78);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.65);
+
+  /* Brand Shadows */
+  --shadow-brand: 0 8px 30px rgba(91, 155, 208, 0.18);
+}
+

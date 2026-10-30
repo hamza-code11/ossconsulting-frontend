@@ -1,0 +1,200 @@
+.footer {
+  position: relative;
+  overflow: hidden; /* Watermark ko control karne ke liye */
+  background: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--section-padding-y);
+  color: var(--color-text-primary);
+}
+
+/* ===== Background Watermark ===== */
+.wordmark {
+  position: absolute;
+  bottom: -20px; /* Thora neechay shift kiya taake bas adha nazar aaye */
+  left: 0;
+  width: 100%;
+  height: 250px; /* Height increase ki taake text bada ho */
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.05; /* Bohot halka (faded) background text */
+}
+
+.wordmarkSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.wordmarkText {
+  font-family: var(--font-heading);
+  font-weight: 900; /* Extrabold */
+  font-size: 220px; /* Bada size */
+  letter-spacing: -0.04em;
+  fill: var(--color-brand-primary); /* Brand color use kiya */
+}
+
+/* Main Container (Upar aane ke liye z-index) */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--section-padding-x) 3rem; /* Footer ki height increase ki */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.brandCol {
+  max-width: 320px;
+}
+
+/* Logo Image */
+.logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+}
+
+.logoImage {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brandDesc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: 1.5rem;
+}
+
+/* Social Icons */
+.socials {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.socialIcon:hover {
+  color: var(--color-bg-primary);
+  background: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  transform: translateY(-2px);
+}
+
+/* Columns */
+.colTitle {
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: 1.5rem;
+  color: var(--color-text-primary);
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.linkList a {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.linkList a:hover {
+  color: var(--color-brand-primary);
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contactList li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.contactList svg {
+  color: var(--color-brand-primary);
+  flex-shrink: 0;
+}
+
+/* Bottom Bar */
+.bottomBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+}
+
+.legalLinks {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.legalLinks a:hover {
+  color: var(--color-brand-primary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .brandCol {
+    grid-column: span 2;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .brandCol {
+    grid-column: span 1;
+  }
+  .bottomBar {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  .wordmark {
+    height: 120px;
+    bottom: 10px;
+  }
+  .wordmarkText {
+    font-size: 100px;
+  }
+}
