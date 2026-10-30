@@ -69,7 +69,6 @@ export const contactData: ContactData = {
       "Technology",
       "Marketing and Growth",
       "Operational Support",
-      "Not sure yet",
     ],
     submitLabel: "Send message",
     sendingLabel: "Sending...",

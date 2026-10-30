@@ -3,56 +3,33 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import ThemeToggle from "@/components/website/layout/ThemeToggle/ThemeToggle";
 import styles from "./Navbar.module.css";
 
 const navLinks = [
-  { name: "Home", href: "/", id: "home" },
-  { name: "About", href: "/about", id: "about" },
-  { name: "Services", href: "/services", id: "services" },
-  { name: "Our Approach", href: "#approach", id: "approach" },
-  { name: "Contact", href: "/contact", id: "contact" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("home");
+  
+  // Current path detect karne ke liye hook
+  const pathname = usePathname();
 
-  // Scrolled state + Home active jab top par ho
+  // Scrolled state
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
-      if (window.scrollY < 200) setActive("home");
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Scroll spy: jo section screen ke beech mein ho, wo active
-  useEffect(() => {
-    const elements = navLinks
-      .filter((l) => l.id !== "home")
-      .map((l) => document.getElementById(l.id))
-      .filter((el): el is HTMLElement => el !== null);
-
-    if (elements.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && window.scrollY >= 200) {
-            setActive(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
-
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
   }, []);
 
   // Mobile menu open ho to background scroll band
@@ -62,6 +39,14 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
+
+  // Helper function: check karega ke link active hai ya nahi
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(href);
+  };
 
   return (
     <>
@@ -86,12 +71,12 @@ export default function Navbar() {
           <nav className={styles.desktopNav} aria-label="Main navigation">
             {navLinks.map((link) => (
               <Link
-                key={link.id}
+                key={link.name}
                 href={link.href}
                 className={`${styles.navLink} ${
-                  active === link.id ? styles.navLinkActive : ""
+                  isActive(link.href) ? styles.navLinkActive : ""
                 }`}
-                aria-current={active === link.id ? "page" : undefined}
+                aria-current={isActive(link.href) ? "page" : undefined}
               >
                 {link.name}
               </Link>
@@ -104,7 +89,7 @@ export default function Navbar() {
               <ThemeToggle />
             </div>
 
-            <Link href="#contact" className={styles.ctaButton}>
+            <Link href="/contact" className={styles.ctaButton}>
               Let&apos;s Talk <ArrowUpRight size={14} strokeWidth={2.4} />
             </Link>
 
@@ -147,10 +132,10 @@ export default function Navbar() {
         <div className={styles.mobileNavLinksWrapper}>
           {navLinks.map((link) => (
             <Link
-              key={link.id}
+              key={link.name}
               href={link.href}
               className={`${styles.mobileNavLink} ${
-                active === link.id ? styles.mobileNavLinkActive : ""
+                isActive(link.href) ? styles.mobileNavLinkActive : ""
               }`}
               onClick={() => setIsOpen(false)}
             >
@@ -159,7 +144,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        <Link href="#contact" className={styles.mobileCta} onClick={() => setIsOpen(false)}>
+        <Link href="/contact" className={styles.mobileCta} onClick={() => setIsOpen(false)}>
           Let&apos;s Talk
         </Link>
       </div>

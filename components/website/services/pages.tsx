@@ -1,34 +1,29 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 import {
-  AnimatePresence,
-  motion,
-  type Variants,
-} from "framer-motion";
-import {
-  ArrowRight,
   ArrowUpRight,
-  BarChart3,
   Briefcase,
+  Building2,
+  Camera,
   Check,
-  Cloud,
   Code2,
   Compass,
+  Database,
   Globe,
+  GraduationCap,
   Headset,
-  Mail,
-  Map,
   Megaphone,
   Palette,
-  Plug,
+  PenTool,
   SearchCheck,
   Settings2,
-  ShieldCheck,
+  Share2,
   Smartphone,
-  Target,
-  TrendingUp,
+  Wind,
   Workflow,
   type LucideIcon,
 } from "lucide-react";
@@ -41,20 +36,19 @@ const ICONS: Record<ServiceIcon, LucideIcon> = {
   megaphone: Megaphone,
   settings: Settings2,
   briefcase: Briefcase,
-  trending: TrendingUp,
-  search: SearchCheck,
-  map: Map,
+  workflow: Workflow,
+  graduation: GraduationCap,
+  building: Building2,
   globe: Globe,
   smartphone: Smartphone,
-  cloud: Cloud,
-  plug: Plug,
+  database: Database,
+  camera: Camera,
+  share: Share2,
+  search: SearchCheck,
+  pen: PenTool,
   palette: Palette,
-  mail: Mail,
-  target: Target,
-  workflow: Workflow,
   headset: Headset,
-  chart: BarChart3,
-  shield: ShieldCheck,
+  wind: Wind,
 };
 
 const fadeUp: Variants = {
@@ -67,6 +61,37 @@ const fadeUp: Variants = {
 };
 
 const viewport = { once: true, margin: "-70px" } as const;
+
+function ServiceImage({
+  src,
+  alt,
+  Icon,
+}: {
+  src: string;
+  alt: string;
+  Icon: LucideIcon;
+}) {
+  const [failed, setFailed] = useState(false);
+
+  if (failed) {
+    return (
+      <span className={styles.imgFallback}>
+        <Icon size={44} />
+      </span>
+    );
+  }
+
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      sizes="(max-width: 640px) 92vw, (max-width: 1100px) 46vw, 30vw"
+      className={styles.img}
+      onError={() => setFailed(true)}
+    />
+  );
+}
 
 export default function ServicesPage({ data }: { data: ServicesData }) {
   const { hero, categories, services, delivery } = data;
@@ -165,32 +190,35 @@ export default function ServicesPage({ data }: { data: ServicesData }) {
                     exit={{ opacity: 0, scale: 0.96 }}
                     transition={{ duration: 0.35, ease: "easeOut" }}
                   >
-                    <div className={styles.cardTop}>
+                    <div className={styles.mediaWrap}>
+                      <div className={styles.media}>
+                        <ServiceImage src={s.image} alt={s.title} Icon={Icon} />
+                        <span className={styles.tag}>{labelOf[s.category]}</span>
+                      </div>
                       <span className={styles.iconBox}>
                         <Icon size={22} />
                       </span>
-                      <span className={styles.tag}>
-                        {labelOf[s.category]}
-                      </span>
                     </div>
 
-                    <h3 className={styles.cardTitle}>{s.title}</h3>
-                    <p className={styles.cardText}>{s.text}</p>
+                    <div className={styles.body}>
+                      <h3 className={styles.cardTitle}>{s.title}</h3>
+                      <p className={styles.cardText}>{s.text}</p>
 
-                    <ul className={styles.features}>
-                      {s.features.map((f) => (
-                        <li key={f} className={styles.feature}>
-                          <span className={styles.check}>
-                            <Check size={12} strokeWidth={3} />
-                          </span>
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
+                      <ul className={styles.features}>
+                        {s.features.map((f) => (
+                          <li key={f} className={styles.feature}>
+                            <span className={styles.check}>
+                              <Check size={12} strokeWidth={3} />
+                            </span>
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
 
-                    <Link href="/#contact" className={styles.cardLink}>
-                      Get started <ArrowUpRight size={15} />
-                    </Link>
+                      <Link href="/contact" className={styles.cardLink}>
+                        Get started <ArrowUpRight size={15} />
+                      </Link>
+                    </div>
                   </motion.li>
                 );
               })}
@@ -238,7 +266,6 @@ export default function ServicesPage({ data }: { data: ServicesData }) {
           </ol>
         </div>
       </section>
-
     </main>
   );
 }

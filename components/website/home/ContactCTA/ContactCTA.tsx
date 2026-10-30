@@ -108,10 +108,10 @@ export default function ContactCTA() {
                 className={styles.select}
               >
                 <option value="" disabled>Select a service...</option>
-                <option value="Business">Business & Enterprise</option>
-                <option value="Technology">Technology & Software</option>
-                <option value="Marketing">Marketing & Growth</option>
-                <option value="Facility">Facility Services</option>
+                <option value="Business">Business Consulting</option>
+                <option value="Technology">Technology</option>
+                <option value="Marketing">Marketing and Growth</option>
+                <option value="support">Operational Support</option> 
               </select>
             </div>
 

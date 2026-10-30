@@ -24,17 +24,16 @@ const InstagramIcon = () => (
 
 const quickLinks = [
   { name: "Home", href: "/" },
-  { name: "About", href: "#about" },
-  { name: "Services", href: "#services" },
-  { name: "Our Approach", href: "#approach" },
-  { name: "Contact", href: "#contact" },
+  { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Contact", href: "/contact" }, 
 ];
 
 const serviceLinks = [
   "Business & Enterprise Solutions",
   "Technology & Software",
   "Marketing & Digital Growth",
-  "Facility Services",
+  "Operational Support",
 ];
 
 const socials = [

@@ -4,20 +4,19 @@ export type ServiceIcon =
   | "megaphone"
   | "settings"
   | "briefcase"
-  | "trending"
-  | "search"
-  | "map"
+  | "workflow"
+  | "graduation"
+  | "building"
   | "globe"
   | "smartphone"
-  | "cloud"
-  | "plug"
+  | "database"
+  | "camera"
+  | "share"
+  | "search"
+  | "pen"
   | "palette"
-  | "mail"
-  | "target"
-  | "workflow"
   | "headset"
-  | "chart"
-  | "shield";
+  | "wind";
 
 export interface ServicesHero {
   eyebrow: string;
@@ -36,6 +35,7 @@ export interface ServiceItem {
   id: string;
   category: string; // ServiceCategory.id
   icon: ServiceIcon;
+  image: string; // image URL ya /public ka path
   title: string;
   text: string;
   features: string[];
@@ -45,7 +45,6 @@ export interface DeliveryStep {
   title: string;
   text: string;
 }
-
 
 export interface ServicesData {
   hero: ServicesHero;
