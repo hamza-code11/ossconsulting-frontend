@@ -98,10 +98,10 @@ export default function Hero() {
           </p>
 
           <div className={styles.ctaGroup}>
-            <Link href="#services" className={styles.primaryCta}>
+            <Link href="/services" className={styles.primaryCta}>
               Explore Our Services <ArrowRight size={18} />
             </Link>
-            <Link href="#contact" className={styles.secondaryCta}>
+            <Link href="/contact" className={styles.secondaryCta}>
               Let&apos;s Talk Business <ArrowUpRight size={16} />
             </Link>
           </div>

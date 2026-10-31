@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { contactData } from "@/data/contact";
 import styles from "./Footer.module.css";
 
 // Custom Brand Icons (SVG)
@@ -26,9 +27,11 @@ const quickLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
-  { name: "Contact", href: "/contact" }, 
+  { name: "Blogs", href: "/blogs" },
+  { name: "Contact", href: "/contact" },
 ];
 
+// Sirf naam dikhte hain, clickable nahi
 const serviceLinks = [
   "Business & Enterprise Solutions",
   "Technology & Software",
@@ -36,11 +39,27 @@ const serviceLinks = [
   "Operational Support",
 ];
 
+// Links data/contact.ts ke `social` se aate hain (label match hona chahiye)
 const socials = [
   { name: "LinkedIn", icon: <LinkedInIcon /> },
   { name: "Facebook", icon: <FacebookIcon /> },
   { name: "Instagram", icon: <InstagramIcon /> },
-];
+].map((s) => ({
+  ...s,
+  href: contactData.social.find((l) => l.label === s.name)?.href,
+}));
+
+// Email, phone aur office data/contact.ts ke `info` se aate hain
+const contactItems = [
+  { key: "mail", Icon: Mail },
+  { key: "phone", Icon: Phone },
+  { key: "map", Icon: MapPin },
+]
+  .map(({ key, Icon }) => {
+    const item = contactData.info.find((i) => i.icon === key);
+    return item ? { Icon, value: item.value, href: item.href } : null;
+  })
+  .filter((x): x is NonNullable<typeof x> => x !== null);
 
 export default function Footer() {
   return (
@@ -73,7 +92,7 @@ export default function Footer() {
           <div className={styles.brandCol}>
             <Link href="/" className={styles.logo} aria-label="OSS Consulting home">
               <Image
-                src="/logo/logo.webp"
+                src="/logo/logo.png"
                 alt="OSS Consulting Logo"
                 width={140}
                 height={42}
@@ -88,11 +107,21 @@ export default function Footer() {
 
             {/* Social Icons */}
             <div className={styles.socials}>
-              {socials.map((social) => (
-                <Link key={social.name} href="#" className={styles.socialIcon} aria-label={social.name}>
-                  {social.icon}
-                </Link>
-              ))}
+              {socials.map(
+                (social) =>
+                  social.href && (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.socialIcon}
+                      aria-label={`OSS Consulting on ${social.name}`}
+                    >
+                      {social.icon}
+                    </a>
+                  )
+              )}
             </div>
           </div>
 
@@ -108,34 +137,28 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Services (non-clickable) */}
           <div className={styles.linkCol}>
             <h4 className={styles.colTitle}>Services</h4>
             <ul className={styles.linkList}>
               {serviceLinks.map((name) => (
-                <li key={name}>
-                  <Link href="#services">{name}</Link>
+                <li key={name} className={styles.plainItem}>
+                  {name}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact (data/contact.ts se) */}
           <div className={styles.contactCol}>
             <h4 className={styles.colTitle}>Get in Touch</h4>
             <ul className={styles.contactList}>
-              <li>
-                <Mail size={16} />
-                <span>Email address — to be added</span>
-              </li>
-              <li>
-                <Phone size={16} />
-                <span>Phone number — to be added</span>
-              </li>
-              <li>
-                <MapPin size={16} />
-                <span>Office location — to be added</span>
-              </li>
+              {contactItems.map(({ Icon, value, href }) => (
+                <li key={value}>
+                  <Icon size={16} />
+                  {href ? <a href={href}>{value}</a> : <span>{value}</span>}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -146,8 +169,8 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} OSS Consulting. All rights reserved.
           </p>
           <div className={styles.legalLinks}>
-            <Link href="#">Privacy Policy</Link>
-            <Link href="#">Terms of Service</Link>
+            <Link href="/privacy-policy">Privacy Policy</Link>
+            <Link href="/terms-and-conditions">Terms of Service</Link>
           </div>
         </div>
       </div>

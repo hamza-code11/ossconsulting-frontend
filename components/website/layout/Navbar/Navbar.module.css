@@ -42,11 +42,24 @@
   align-items: center;
 }
 
-/* Logo Size */
+/* Logo Size & Transition */
 .logoImage {
   width: auto;
   height: 34px; 
   object-fit: contain;
+  /* Smooth transition jab theme change ho */
+  transition: filter var(--transition-normal);
+}
+
+/* =========================================
+   DARK MODE LOGO FIX
+   (Black text ko White karne ke liye)
+========================================= */
+:global([data-theme="dark"]) .logoImage {
+  /* brightness(0) se poora logo black ho jata hai, 
+     phir invert(1) se wo white ho jata hai. 
+     Transparency (transparent bg) barqarar rehti hai. */
+  filter: brightness(0) invert(1);
 }
 
 /* === CENTER === */
@@ -131,7 +144,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: var(--color-overlay); /* Hardcoded color hata kar variable use kiya */
+  background: var(--color-overlay);
   backdrop-filter: blur(4px);
   z-index: calc(var(--z-header) - 1);
   opacity: 0;
@@ -159,7 +172,7 @@
   transform: translateX(100%);
   visibility: hidden;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
-  box-shadow: var(--shadow-xl); /* Shadow ko variable se replace kiya */
+  box-shadow: var(--shadow-xl);
 }
 
 .mobileNavOpen {

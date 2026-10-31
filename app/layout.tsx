@@ -25,9 +25,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OSS Consulting — One Stop Shop for Business Services",
+  title: "OSS Consulting",
   description:
     "One Partner. Every Business Possibility. Business consulting, technology, digital growth and operational support under one roof.",
+    icons: {
+    icon: "/logo/favicon.png",
+  },
 };
 
 export default function RootLayout({

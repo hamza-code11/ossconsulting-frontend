@@ -15,21 +15,21 @@ export const contactData: ContactData = {
     {
       icon: "mail",
       label: "Email",
-      value: "hello@osscconsulting.com",
+      value: "info@ossconsulting.us",
       note: "We reply within 24 hours",
-      href: "mailto:hello@osscconsulting.com",
+      href: "mailto:info@ossconsulting.us",
     },
     {
       icon: "phone",
       label: "Phone",
-      value: "+92 300 0000000",
+      value: "+1(770) 652 2901",
       note: "Mon to Sat, 9am to 6pm",
-      href: "tel:+923000000000",
+      href: "tel:+1(770) 652 2901",
     },
     {
       icon: "map",
       label: "Office",
-      value: "Karachi, Sindh, Pakistan",
+      value: "1943 Pleasant Hill Rd, Duluth, GA 30096, USA",
       note: "Visits by appointment",
     },
     {

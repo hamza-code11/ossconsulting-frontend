@@ -12,6 +12,7 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
+  { name: "Blogs", href: "/blogs" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -57,7 +58,7 @@ export default function Navbar() {
           <div className={styles.headerLeft}>
             <Link href="/" className={styles.logo} aria-label="OSS Consulting home">
               <Image
-                src="/logo/logo.webp"
+                src="/logo/logo.png"
                 alt="OSS Consulting"
                 width={180}
                 height={40}
@@ -113,7 +114,7 @@ export default function Navbar() {
         <div className={styles.mobileNavHeader}>
           <Link href="/" className={styles.logo} onClick={() => setIsOpen(false)}>
             <Image
-              src="/logo/logo.webp"
+              src="/logo/logo.png"
               alt="OSS Consulting"
               width={160}
               height={36}

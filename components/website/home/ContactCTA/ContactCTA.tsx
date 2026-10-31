@@ -2,7 +2,20 @@
 
 import { useState } from "react";
 import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
+import { contactData } from "@/data/contact";
 import styles from "./ContactCTA.module.css";
+
+// Email, phone aur office data/contact.ts ke `info` se aate hain
+const contactItems = [
+  { key: "mail", Icon: Mail },
+  { key: "phone", Icon: Phone },
+  { key: "map", Icon: MapPin },
+]
+  .map(({ key, Icon }) => {
+    const item = contactData.info.find((i) => i.icon === key);
+    return item ? { Icon, value: item.value, href: item.href } : null;
+  })
+  .filter((x): x is NonNullable<typeof x> => x !== null);
 
 export default function ContactCTA() {
   const [formData, setFormData] = useState({
@@ -56,20 +69,14 @@ export default function ContactCTA() {
             business possibility.
           </p>
 
-          {/* Minimal Contact Info */}
+          {/* Minimal Contact Info (data/contact.ts se) */}
           <div className={styles.contactInfo}>
-            <div className={styles.contactRow}>
-              <Mail size={18} className={styles.contactIcon} />
-              <a href="mailto:hello@ossconsulting.com">hello@ossconsulting.com</a>
-            </div>
-            <div className={styles.contactRow}>
-              <Phone size={18} className={styles.contactIcon} />
-              <a href="tel:+1234567890">+1 (234) 567-890</a>
-            </div>
-            <div className={styles.contactRow}>
-              <MapPin size={18} className={styles.contactIcon} />
-              <span>Global Headquarters, New York</span>
-            </div>
+            {contactItems.map(({ Icon, value, href }) => (
+              <div key={value} className={styles.contactRow}>
+                <Icon size={18} className={styles.contactIcon} />
+                {href ? <a href={href}>{value}</a> : <span>{value}</span>}
+              </div>
+            ))}
           </div>
         </div>
 

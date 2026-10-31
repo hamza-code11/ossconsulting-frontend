@@ -28,7 +28,7 @@ export default function AboutContent() {
         </p>
       </div>
 
-      <Link href="#services" className={styles.link}>
+      <Link href="/services" className={styles.link}>
         Explore our services <ArrowRight size={16} />
       </Link>
     </div>

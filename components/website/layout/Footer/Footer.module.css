@@ -66,7 +66,17 @@
   height: 40px;
   width: auto;
   object-fit: contain;
+  transition: filter var(--transition-normal);
 }
+
+/* =========================================
+   DARK MODE LOGO FIX (Same as Navbar)
+========================================= */
+:global([data-theme="dark"]) .logoImage {
+  /* Black text ko white karne ke liye */
+  filter: brightness(0) invert(1);
+}
+
 
 .brandDesc {
   font-size: var(--text-sm);
@@ -197,4 +207,24 @@
   .wordmarkText {
     font-size: 100px;
   }
+}
+
+
+
+
+/* Services column: sirf text, clickable nahi */
+.plainItem {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Contact column ke links */
+.contactList a {
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+  overflow-wrap: anywhere;
+}
+
+.contactList a:hover {
+  color: var(--color-brand-primary);
 }
