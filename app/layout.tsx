@@ -24,12 +24,41 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+// Updated Metadata with Open Graph
 export const metadata: Metadata = {
   title: "OSS Consulting",
   description:
     "One Partner. Every Business Possibility. Business consulting, technology, digital growth and operational support under one roof.",
-    icons: {
+  
+  // Favicon
+  icons: {
     icon: "/logo/favicon.png",
+  },
+
+  // WhatsApp & Facebook sharing previews
+  openGraph: {
+    title: "OSS Consulting",
+    description: "One Partner. Every Business Possibility.",
+    url: "https://ossconsulting.vercel.app",
+    siteName: "OSS Consulting",
+    images: [
+      {
+        url: "/og-image.png", // Aapki 1200x630 image ka path
+        width: 1200,
+        height: 630,
+        alt: "OSS Consulting - One Stop Shop for Business Services",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+
+  // Twitter sharing previews
+  twitter: {
+    card: "summary_large_image",
+    title: "OSS Consulting",
+    description: "One Partner. Every Business Possibility.",
+    images: ["/og-image.png"],
   },
 };
 
