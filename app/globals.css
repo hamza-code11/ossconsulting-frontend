@@ -134,3 +134,53 @@ ol {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+
+
+
+
+/* ===== Toast progress line ===== */
+.oss-toast {
+  position: relative;
+}
+
+.oss-toast::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  border-radius: 0 0 var(--border-radius, 8px) var(--border-radius, 8px);
+  background: currentColor;
+  opacity: 0.55;
+  transform-origin: left center;
+  animation: oss-toast-progress 5000ms linear forwards;
+}
+
+.oss-toast[data-type="success"]::after {
+  background: #16a34a;
+  opacity: 1;
+}
+
+.oss-toast[data-type="error"]::after {
+  background: #dc2626;
+  opacity: 1;
+}
+
+/* Hover par sonner timer rok deta hai, line bhi ruk jaye */
+[data-sonner-toaster]:hover .oss-toast::after {
+  animation-play-state: paused;
+}
+
+@keyframes oss-toast-progress {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+

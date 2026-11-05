@@ -60,7 +60,7 @@ export const contactData: ContactData = {
     placeholders: {
       name: "Your name",
       email: "you@company.com",
-      phone: "+92 300 0000000",
+      phone: "+16462099461",
       service: "Select a service",
       message: "Tell us a little about your business and what you need...",
     },

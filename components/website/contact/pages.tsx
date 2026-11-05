@@ -1,12 +1,10 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import Link from "next/link";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
+import { toast } from "sonner";
 import {
-  ArrowRight,
   ArrowUpRight,
-  CheckCircle2,
   ChevronDown,
   Clock,
   Mail,
@@ -38,7 +36,7 @@ const fadeUp: Variants = {
 const viewport = { once: true, margin: "-70px" } as const;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-type Status = "idle" | "sending" | "success" | "error";
+type Status = "idle" | "sending";
 type Values = {
   name: string;
   email: string;
@@ -92,7 +90,10 @@ export default function ContactPage({ data }: { data: ContactData }) {
 
     const found = validate(values);
     setErrors(found);
-    if (Object.keys(found).length > 0) return;
+    if (Object.keys(found).length > 0) {
+      toast.error("Please check the highlighted fields.");
+      return;
+    }
 
     setStatus("sending");
     try {
@@ -102,10 +103,17 @@ export default function ContactPage({ data }: { data: ContactData }) {
         body: JSON.stringify(values),
       });
       if (!res.ok) throw new Error("Request failed");
-      setStatus("success");
+
       setValues(EMPTY);
+      toast.success(form.successTitle, {
+        description: form.successText,
+      });
     } catch {
-      setStatus("error");
+      toast.error("Message not sent", {
+        description: form.errorText,
+      });
+    } finally {
+      setStatus("idle");
     }
   };
 
@@ -203,177 +211,136 @@ export default function ContactPage({ data }: { data: ContactData }) {
             whileInView="show"
             viewport={viewport}
           >
-            <AnimatePresence mode="wait">
-              {status === "success" ? (
-                <motion.div
-                  key="success"
-                  className={styles.success}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  role="status"
-                >
-                  <span className={styles.successIcon}>
-                    <CheckCircle2 size={40} />
-                  </span>
-                  <h2 className={styles.formTitle}>{form.successTitle}</h2>
-                  <p className={styles.formText}>{form.successText}</p>
-                  <button
-                    type="button"
-                    className={styles.ghostBtn}
-                    onClick={() => setStatus("idle")}
-                  >
-                    {form.successReset}
-                  </button>
-                </motion.div>
-              ) : (
-                <motion.form
-                  key="form"
-                  onSubmit={onSubmit}
-                  noValidate
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h2 className={styles.formTitle}>{form.title}</h2>
-                  <p className={styles.formText}>{form.text}</p>
+            <form onSubmit={onSubmit} noValidate>
+              <h2 className={styles.formTitle}>{form.title}</h2>
+              <p className={styles.formText}>{form.text}</p>
 
-                  <div className={styles.fields}>
-                    <div className={styles.field}>
-                      <label htmlFor="c-name" className={styles.label}>
-                        {form.labels.name}
-                      </label>
-                      <input
-                        id="c-name"
-                        type="text"
-                        autoComplete="name"
-                        className={`${styles.input} ${errors.name ? styles.invalid : ""}`}
-                        placeholder={form.placeholders.name}
-                        value={values.name}
-                        onChange={set("name")}
-                        aria-invalid={!!errors.name}
-                        aria-describedby={errors.name ? "c-name-err" : undefined}
-                      />
-                      {errors.name && (
-                        <span id="c-name-err" className={styles.error}>
-                          {errors.name}
-                        </span>
-                      )}
-                    </div>
-
-                    <div className={styles.field}>
-                      <label htmlFor="c-email" className={styles.label}>
-                        {form.labels.email}
-                      </label>
-                      <input
-                        id="c-email"
-                        type="email"
-                        autoComplete="email"
-                        className={`${styles.input} ${errors.email ? styles.invalid : ""}`}
-                        placeholder={form.placeholders.email}
-                        value={values.email}
-                        onChange={set("email")}
-                        aria-invalid={!!errors.email}
-                        aria-describedby={errors.email ? "c-email-err" : undefined}
-                      />
-                      {errors.email && (
-                        <span id="c-email-err" className={styles.error}>
-                          {errors.email}
-                        </span>
-                      )}
-                    </div>
-
-                    <div className={styles.field}>
-                      <label htmlFor="c-phone" className={styles.label}>
-                        {form.labels.phone}
-                      </label>
-                      <input
-                        id="c-phone"
-                        type="tel"
-                        autoComplete="tel"
-                        className={styles.input}
-                        placeholder={form.placeholders.phone}
-                        value={values.phone}
-                        onChange={set("phone")}
-                      />
-                    </div>
-
-                    <div className={styles.field}>
-                      <label htmlFor="c-service" className={styles.label}>
-                        {form.labels.service}
-                      </label>
-                      <div className={styles.selectWrap}>
-                        <select
-                          id="c-service"
-                          className={`${styles.input} ${styles.select}`}
-                          value={values.service}
-                          onChange={set("service")}
-                        >
-                          <option value="">{form.placeholders.service}</option>
-                          {form.services.map((s) => (
-                            <option key={s} value={s}>
-                              {s}
-                            </option>
-                          ))}
-                        </select>
-                        <ChevronDown size={18} className={styles.selectIcon} />
-                      </div>
-                    </div>
-
-                    <div className={`${styles.field} ${styles.full}`}>
-                      <label htmlFor="c-message" className={styles.label}>
-                        {form.labels.message}
-                      </label>
-                      <textarea
-                        id="c-message"
-                        rows={5}
-                        className={`${styles.input} ${styles.textarea} ${errors.message ? styles.invalid : ""}`}
-                        placeholder={form.placeholders.message}
-                        value={values.message}
-                        onChange={set("message")}
-                        aria-invalid={!!errors.message}
-                        aria-describedby={errors.message ? "c-message-err" : undefined}
-                      />
-                      {errors.message && (
-                        <span id="c-message-err" className={styles.error}>
-                          {errors.message}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Honeypot: insaan ko nahi dikhta, bots bhar dete hain */}
-                    <div className={styles.hp} aria-hidden="true">
-                      <label htmlFor="c-website">Website</label>
-                      <input
-                        id="c-website"
-                        type="text"
-                        tabIndex={-1}
-                        autoComplete="off"
-                        value={values.website}
-                        onChange={set("website")}
-                      />
-                    </div>
-                  </div>
-
-                  {status === "error" && (
-                    <p className={styles.formError} role="alert">
-                      {form.errorText}
-                    </p>
+              <div className={styles.fields}>
+                <div className={styles.field}>
+                  <label htmlFor="c-name" className={styles.label}>
+                    {form.labels.name}
+                  </label>
+                  <input
+                    id="c-name"
+                    type="text"
+                    autoComplete="name"
+                    className={`${styles.input} ${errors.name ? styles.invalid : ""}`}
+                    placeholder={form.placeholders.name}
+                    value={values.name}
+                    onChange={set("name")}
+                    aria-invalid={!!errors.name}
+                    aria-describedby={errors.name ? "c-name-err" : undefined}
+                  />
+                  {errors.name && (
+                    <span id="c-name-err" className={styles.error}>
+                      {errors.name}
+                    </span>
                   )}
+                </div>
 
-                  <button
-                    type="submit"
-                    className={styles.submit}
-                    disabled={status === "sending"}
-                  >
-                    {status === "sending" ? form.sendingLabel : form.submitLabel}
-                    <Send size={16} />
-                  </button>
-                </motion.form>
-              )}
-            </AnimatePresence>
+                <div className={styles.field}>
+                  <label htmlFor="c-email" className={styles.label}>
+                    {form.labels.email}
+                  </label>
+                  <input
+                    id="c-email"
+                    type="email"
+                    autoComplete="email"
+                    className={`${styles.input} ${errors.email ? styles.invalid : ""}`}
+                    placeholder={form.placeholders.email}
+                    value={values.email}
+                    onChange={set("email")}
+                    aria-invalid={!!errors.email}
+                    aria-describedby={errors.email ? "c-email-err" : undefined}
+                  />
+                  {errors.email && (
+                    <span id="c-email-err" className={styles.error}>
+                      {errors.email}
+                    </span>
+                  )}
+                </div>
+
+                <div className={styles.field}>
+                  <label htmlFor="c-phone" className={styles.label}>
+                    {form.labels.phone}
+                  </label>
+                  <input
+                    id="c-phone"
+                    type="tel"
+                    autoComplete="tel"
+                    className={styles.input}
+                    placeholder={form.placeholders.phone}
+                    value={values.phone}
+                    onChange={set("phone")}
+                  />
+                </div>
+
+                <div className={styles.field}>
+                  <label htmlFor="c-service" className={styles.label}>
+                    {form.labels.service}
+                  </label>
+                  <div className={styles.selectWrap}>
+                    <select
+                      id="c-service"
+                      className={`${styles.input} ${styles.select}`}
+                      value={values.service}
+                      onChange={set("service")}
+                    >
+                      <option value="">{form.placeholders.service}</option>
+                      {form.services.map((s) => (
+                        <option key={s} value={s}>
+                          {s}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown size={18} className={styles.selectIcon} />
+                  </div>
+                </div>
+
+                <div className={`${styles.field} ${styles.full}`}>
+                  <label htmlFor="c-message" className={styles.label}>
+                    {form.labels.message}
+                  </label>
+                  <textarea
+                    id="c-message"
+                    rows={5}
+                    className={`${styles.input} ${styles.textarea} ${errors.message ? styles.invalid : ""}`}
+                    placeholder={form.placeholders.message}
+                    value={values.message}
+                    onChange={set("message")}
+                    aria-invalid={!!errors.message}
+                    aria-describedby={errors.message ? "c-message-err" : undefined}
+                  />
+                  {errors.message && (
+                    <span id="c-message-err" className={styles.error}>
+                      {errors.message}
+                    </span>
+                  )}
+                </div>
+
+                {/* Honeypot: insaan ko nahi dikhta, bots bhar dete hain */}
+                <div className={styles.hp} aria-hidden="true">
+                  <label htmlFor="c-website">Website</label>
+                  <input
+                    id="c-website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={values.website}
+                    onChange={set("website")}
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className={styles.submit}
+                disabled={status === "sending"}
+              >
+                {status === "sending" ? form.sendingLabel : form.submitLabel}
+                <Send size={16} />
+              </button>
+            </form>
           </motion.div>
         </div>
       </section>
@@ -443,7 +410,7 @@ export default function ContactPage({ data }: { data: ContactData }) {
           </ul>
         </div>
       </section>
-
     </main>
   );
 }
+

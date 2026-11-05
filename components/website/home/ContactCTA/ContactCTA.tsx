@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
+import { toast } from "sonner";
 import { contactData } from "@/data/contact";
 import styles from "./ContactCTA.module.css";
 
@@ -17,30 +18,53 @@ const contactItems = [
   })
   .filter((x): x is NonNullable<typeof x> => x !== null);
 
+const { form } = contactData;
+
+const EMPTY = {
+  name: "",
+  email: "",
+  phone: "",
+  service: "",
+  message: "",
+  website: "", // honeypot
+};
+
 export default function ContactCTA() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    service: "",
-    message: "",
-  });
-
+  const [formData, setFormData] = useState(EMPTY);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    setFormData((p) => ({ ...p, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
     setIsSubmitting(true);
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error("Request failed");
+
+      setFormData(EMPTY);
+      toast.success(form.successTitle, {
+        description: form.successText,
+      });
+    } catch {
+      toast.error("Message not sent", {
+        description: form.errorText,
+      });
+    } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
-      setFormData({ name: "", email: "", service: "", message: "" });
-      setTimeout(() => setSubmitted(false), 4000);
-    }, 1500);
+    }
   };
 
   return (
@@ -50,23 +74,22 @@ export default function ContactCTA() {
       <div className={styles.bgGlow} aria-hidden="true" />
 
       <div className={styles.container}>
-        
         {/* Left Side: Editorial Content */}
         <div className={styles.content}>
           <div className={styles.eyebrow}>
             <span className={styles.eyebrowLine} />
             START A CONVERSATION
           </div>
-          
+
           <h2 className={styles.title}>
             Let's Discuss Your <br />
             <span className={styles.titleAccent}>Business Needs.</span>
           </h2>
-          
+
           <p className={styles.description}>
-            Whatever stage your business is at, OSS Consulting can help you explore 
-            the services and solutions that fit your needs. One partner, every 
-            business possibility.
+            Whatever stage your business is at, OSS Consulting can help you
+            explore the services and solutions that fit your needs. One partner,
+            every business possibility.
           </p>
 
           {/* Minimal Contact Info (data/contact.ts se) */}
@@ -84,64 +107,129 @@ export default function ContactCTA() {
         <div className={styles.formCard}>
           <div className={styles.formHeader}>
             <h3 className={styles.formTitle}>Project Inquiry</h3>
-            <p className={styles.formSubtitle}>Fill out the form below and our team will reach out.</p>
+            <p className={styles.formSubtitle}>
+              Fill out the form below and our team will reach out.
+            </p>
           </div>
 
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.inputRow}>
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Your Name</label>
-                <input 
-                  type="text" name="name" required 
-                  value={formData.name} onChange={handleChange} 
-                  className={styles.input} placeholder="John Doe" 
+                <label htmlFor="cta-name" className={styles.label}>
+                  Your Name
+                </label>
+                <input
+                  id="cta-name"
+                  type="text"
+                  name="name"
+                  required
+                  minLength={2}
+                  autoComplete="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className={styles.input}
+                  placeholder="John Doe"
                 />
               </div>
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Email Address</label>
-                <input 
-                  type="email" name="email" required 
-                  value={formData.email} onChange={handleChange} 
-                  className={styles.input} placeholder="john@company.com" 
+                <label htmlFor="cta-email" className={styles.label}>
+                  Email Address
+                </label>
+                <input
+                  id="cta-email"
+                  type="email"
+                  name="email"
+                  required
+                  autoComplete="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={styles.input}
+                  placeholder="john@company.com"
                 />
               </div>
             </div>
 
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>Service of Interest</label>
-              <select 
-                name="service" required 
-                value={formData.service} onChange={handleChange} 
-                className={styles.select}
-              >
-                <option value="" disabled>Select a service...</option>
-                <option value="Business">Business Consulting</option>
-                <option value="Technology">Technology</option>
-                <option value="Marketing">Marketing and Growth</option>
-                <option value="support">Operational Support</option> 
-              </select>
+            <div className={styles.inputRow}>
+              <div className={styles.inputGroup}>
+                <label htmlFor="cta-phone" className={styles.label}>
+                  Phone Number
+                </label>
+                <input
+                  id="cta-phone"
+                  type="tel"
+                  name="phone"
+                  autoComplete="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className={styles.input}
+                  placeholder={form.placeholders.phone}
+                />
+              </div>
+              <div className={styles.inputGroup}>
+                <label htmlFor="cta-service" className={styles.label}>
+                  Service of Interest
+                </label>
+                <select
+                  id="cta-service"
+                  name="service"
+                  required
+                  value={formData.service}
+                  onChange={handleChange}
+                  className={styles.select}
+                >
+                  <option value="" disabled>
+                    Select a service...
+                  </option>
+                  {form.services.map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
 
             <div className={styles.inputGroup}>
-              <label className={styles.label}>Tell us about your project</label>
-              <textarea 
-                name="message" required rows={3}
-                value={formData.message} onChange={handleChange} 
-                className={styles.textarea} placeholder="Briefly describe your goals..."
+              <label htmlFor="cta-message" className={styles.label}>
+                Tell us about your project
+              </label>
+              <textarea
+                id="cta-message"
+                name="message"
+                required
+                minLength={10}
+                rows={3}
+                value={formData.message}
+                onChange={handleChange}
+                className={styles.textarea}
+                placeholder="Briefly describe your goals..."
               />
             </div>
 
-            <button type="submit" disabled={isSubmitting} className={styles.submitBtn}>
-              {isSubmitting ? "Sending..." : submitted ? "Inquiry Sent!" : "Submit Inquiry"}
-              {!isSubmitting && !submitted && <ArrowRight size={18} />}
+            {/* Honeypot: insaan ko nahi dikhta, bots bhar dete hain */}
+            <div className={styles.hp} aria-hidden="true">
+              <label htmlFor="cta-website">Website</label>
+              <input
+                id="cta-website"
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={formData.website}
+                onChange={handleChange}
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={styles.submitBtn}
+            >
+              {isSubmitting ? "Sending..." : "Submit Inquiry"}
+              {!isSubmitting && <ArrowRight size={18} />}
             </button>
-            
-            {submitted && (
-              <p className={styles.successMsg}>Thank you! Our team will contact you shortly.</p>
-            )}
           </form>
         </div>
-
       </div>
     </section>
   );

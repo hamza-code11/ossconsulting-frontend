@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/app/providers/ThemeProvider";
 import Preloader from "@/components/Preloader/Preloader";
+import AppToaster from "@/components/ui/AppToaster";
 import "./globals.css";
 
 const inter = Inter({
@@ -93,6 +94,8 @@ export default function RootLayout({
           <Preloader />
           {children}
         </ThemeProvider>
+        {/* Global toast notifications (bottom-right) */}
+        <AppToaster />
       </body>
     </html>
   );
