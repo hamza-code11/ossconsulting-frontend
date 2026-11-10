@@ -228,3 +228,7 @@
 .contactList a:hover {
   color: var(--color-brand-primary);
 }
+
+.powered{
+  font-weight: bold;
+}
