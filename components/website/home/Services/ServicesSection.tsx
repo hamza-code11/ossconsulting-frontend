@@ -20,6 +20,7 @@ import {
   Smartphone,
   Wind,
   Workflow,
+  Calculator,
   type LucideIcon,
 } from "lucide-react";
 import Image from "next/image";
@@ -46,6 +47,7 @@ const ICONS: Record<ServiceIcon, LucideIcon> = {
   palette: Palette,
   headset: Headset,
   wind: Wind,
+  calculator: Calculator,
 };
 
 // Sab data data/services.ts se aata hai

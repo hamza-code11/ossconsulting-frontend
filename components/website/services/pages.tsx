@@ -25,6 +25,7 @@ import {
   Smartphone,
   Wind,
   Workflow,
+  Calculator,
   type LucideIcon,
 } from "lucide-react";
 import type { ServiceIcon, ServicesData } from "@/types/services";
@@ -49,6 +50,7 @@ const ICONS: Record<ServiceIcon, LucideIcon> = {
   palette: Palette,
   headset: Headset,
   wind: Wind,
+  calculator: Calculator,
 };
 
 const fadeUp: Variants = {

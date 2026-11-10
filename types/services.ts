@@ -16,7 +16,8 @@ export type ServiceIcon =
   | "pen"
   | "palette"
   | "headset"
-  | "wind";
+  | "wind"
+  | "calculator";
 
 export interface ServicesHero {
   eyebrow: string;

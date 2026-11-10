@@ -96,7 +96,7 @@ export const servicesData: ServicesData = {
       image: img("photo-1557597774-9d273605dfa9"),
       title: "Camera Monitoring",
       text: "Reliable surveillance that keeps your premises secure around the clock.",
-      features: ["CCTV installation", "Remote live viewing", "Maintenance and support"],
+      features: ["Remote live viewing", "Maintenance and support"],
     },
 
     // ===== Growth =====
@@ -164,6 +164,74 @@ export const servicesData: ServicesData = {
       title: "HVAC Duct Cleaning",
       text: "Professional duct cleaning for healthier air and efficient cooling.",
       features: ["Full duct inspection", "Deep cleaning and sanitising", "Residential and commercial"],
+    },
+    {
+      id: "accounting",
+      category: "operations",
+      icon: "calculator",
+      image: img("photo-1554224155-6726b3ff858f"),
+      title: "Accounting Services",
+      text: "Comprehensive accounting solutions to help businesses manage financial records, track expenses and maintain accurate financial reporting.",
+      features: [
+        "Bookkeeping and financial records",
+        "Financial reporting",
+        "Accounts management",
+      ],
+    },
+    // ===== Technology =====
+    {
+      id: "ai-ml-chatbots",
+      category: "technology",
+      icon: "code",
+      image: img("photo-1677442136019-21780ecad995"),
+      title: "AI/ML & Chatbots",
+      text: "Creating intelligent AI and machine learning solutions that automate workflows and enhance customer interactions.",
+      features: [
+        "Intelligent Chatbot Solutions",
+        "Predictive Business Intelligence",
+        "AI-Powered Automation",
+      ],
+    },
+    {
+      id: "web-based-software",
+      category: "technology",
+      icon: "database",
+      image: img("photo-1461749280684-dccba630e2f6"),
+      title: "Web-Based Software",
+      text: "Scalable software solutions designed to handle complex business logic with intuitive and user-friendly interfaces.",
+      features: [
+        "SaaS Products",
+        "Custom Dashboards",
+        "ERP Systems",
+      ],
+    },
+    {
+      id: "ui-ux-design",
+      category: "technology",
+      icon: "palette",
+      image: img("photo-1586717791821-3f44a563fa4c"),
+      title: "UI/UX Design",
+      text: "User-centered interface designs that create intuitive digital experiences and improve user engagement.",
+      features: [
+        "Wireframing",
+        "Prototyping",
+        "Usability Testing",
+      ],
+    },
+
+    // ===== Growth =====
+    {
+      id: "graphic-designing",
+      category: "growth",
+      icon: "palette",
+      image: img("photo-1626785774573-4b799315345d"),
+      title: "Graphic Designing",
+      text: "Creative visual content that tells your brand story and creates lasting impressions with your target audience.",
+      features: [
+        "Logo Design",
+        "Brand Identity",
+        "Social Media Graphics",
+      ],
     },
   ],
 
