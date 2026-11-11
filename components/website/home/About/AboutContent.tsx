@@ -11,20 +11,20 @@ export default function AboutContent() {
           About OSS Consulting
         </p>
         <h2 id="about-heading" className={styles.title}>
-          More Than Services. <em>A Partner</em> in Your Business Journey.
+          Your Business. Our Expertise. <em>One Powerful Partner.</em>
         </h2>
       </div>
 
       <div className={styles.copy}>
         <p className={styles.lead}>
-          Every business has different goals, challenges, and opportunities. OSS
-          brings together a diverse range of professional services to help
-          businesses navigate their needs, improve operations, and pursue growth.
+          OSS Consulting provides comprehensive business solutions across the
+          United States, combining professional security surveillance, advanced
+          technology, digital marketing and financial management services.
         </p>
         <p>
-          Whether you&apos;re building something new or looking to take an
-          established business further, we&apos;re here to help you find the right
-          solutions.
+          From 24/7 remote camera monitoring to accounting, bookkeeping,
+          payroll, taxation, web development and AI automation, we help
+          businesses operate smarter and grow with confidence.
         </p>
       </div>
 

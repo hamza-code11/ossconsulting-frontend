@@ -1,35 +1,36 @@
 import type { AboutData } from "@/types/about";
 
-// Sab text, numbers aur images yahan se badlo. Component ko haath lagane ki zaroorat nahi.
 export const aboutData: AboutData = {
   hero: {
     eyebrow: "About OSS Consulting",
-    title: "One partner for every",
-    accent: "business possibility.",
+    title: "Your business. Our expertise.",
+    accent: "One powerful partner.",
     description:
-      "OSS Consulting is a one stop shop for business services. We bring consulting, technology, marketing and operational support together under one roof, so growing businesses never have to juggle multiple vendors.",
+      "OSS Consulting provides comprehensive business solutions across the United States, combining professional security surveillance, advanced technology, digital marketing and financial management services.",
   },
 
-  // Placeholder numbers: asli numbers se replace karo
+  // Client ne numbers nahi diye. Inhe confirm karke replace karo.
   stats: [
-    { value: 150, suffix: "+", label: "Projects delivered" },
-    { value: 4, suffix: "", label: "Core practices" },
-    { value: 98, suffix: "%", label: "Client satisfaction" },
-    { value: 24, suffix: "/7", label: "Support coverage" },
+    { value: 4, suffix: "", label: "Core service areas" },
+    { value: 24, suffix: "/7", label: "Remote monitoring" },
+    { value: 1, suffix: "", label: "Team for everything" },
+    { value: 100, suffix: "%", label: "Client commitment" },
   ],
 
   story: {
     eyebrow: "OUR STORY",
-    title: "Built to remove the gaps between",
-    accent: "strategy and execution.",
+    title: "Protect your business. Simplify your operations.",
+    accent: "Accelerate your growth.",
     paragraphs: [
-      "OSS started with a simple observation: most businesses lose time and money moving between separate consultants, developers, marketers and operations teams, each with their own priorities.",
-      "We built one team that covers all of it. From the first strategy conversation to the day-to-day running of your systems, the same people stay accountable for the result.",
+      "OSS Consulting is a US-based business solutions and technology company headquartered in Atlanta, Georgia, providing comprehensive services to businesses across the United States.",
+      "From 24/7 remote camera monitoring to accounting, bookkeeping, payroll, taxation, web development and AI automation, we help businesses operate smarter and grow with confidence.",
+      "Our professional team delivers practical solutions designed to help businesses improve efficiency, strengthen security, reduce operational complexity and achieve sustainable growth.",
+      "With our US presence, dedicated team and international operational support, we provide reliable, scalable and cost-effective business solutions.",
     ],
     highlights: [
-      "One team, one point of contact",
-      "Practical advice, not theory",
-      "Support that continues after launch",
+      "Comprehensive services under one roof",
+      "Dedicated professional teams",
+      "Customized business solutions",
     ],
     images: [
       {
@@ -47,45 +48,54 @@ export const aboutData: AboutData = {
     {
       icon: "target",
       label: "MISSION",
-      title: "Make business growth simple",
-      text: "To give businesses of every size one reliable partner for the services they need to move forward, delivered with clarity and accountability.",
+      title: "Empower businesses",
+      text: "To empower businesses through innovative technology, dependable security solutions and professional business support.",
     },
     {
       icon: "eye",
       label: "VISION",
-      title: "The most trusted business partner",
-      text: "To be the first name companies think of when they want strategy, technology, growth and operations handled well and handled together.",
+      title: "A trusted partner, in the US and beyond",
+      text: "To become a trusted business solutions partner for organizations across the United States and internationally.",
     },
   ],
 
   valuesHead: {
-    eyebrow: "OUR VALUES",
-    title: "The principles we",
-    accent: "work by.",
+    eyebrow: "WHY CHOOSE US",
+    title: "Why choose",
+    accent: "OSS Consulting?",
     description:
-      "These are the standards our team holds itself to on every project, big or small.",
+      "One team that covers security, technology, growth and finance, built around what your business actually needs.",
   },
   values: [
     {
-      icon: "shield",
-      title: "Integrity",
-      text: "Honest advice and transparent pricing, even when it is not the easy answer.",
-    },
-    {
-      icon: "lightbulb",
-      title: "Innovation",
-      text: "We use modern tools and fresh thinking to solve problems properly.",
+      icon: "settings",
+      title: "Comprehensive services",
+      text: "Comprehensive services under one roof.",
     },
     {
       icon: "users",
-      title: "Partnership",
-      text: "We work as an extension of your team, not as an outside vendor.",
+      title: "Dedicated teams",
+      text: "Dedicated professional teams focused on your business.",
+    },
+    {
+      icon: "compass",
+      title: "Customized solutions",
+      text: "Customized business solutions shaped around your needs.",
+    },
+    {
+      icon: "target",
+      title: "Cost-effective packages",
+      text: "Cost-effective service packages for businesses of every size.",
     },
     {
       icon: "rocket",
-      title: "Results",
-      text: "Every decision is measured by the outcome it creates for your business.",
+      title: "Technology-driven",
+      text: "Technology-driven operations that improve efficiency.",
+    },
+    {
+      icon: "shield",
+      title: "Quality commitment",
+      text: "Commitment to quality and client satisfaction.",
     },
   ],
-
 };
