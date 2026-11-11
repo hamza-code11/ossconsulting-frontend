@@ -98,11 +98,11 @@ export default function Hero() {
           </p>
 
           <div className={styles.ctaGroup}>
-            <Link href="/services" className={styles.primaryCta}>
-              Explore Our Services <ArrowRight size={18} />
+            <Link href="/contact" className={styles.primaryCta}>
+              GET A FREE CONSULTATION <ArrowRight size={18} />
             </Link>
-            <Link href="/contact" className={styles.secondaryCta}>
-              Let&apos;s Talk Business <ArrowUpRight size={16} />
+            <Link href="/services" className={styles.secondaryCta}>
+              Explore Our Services <ArrowUpRight size={16} />
             </Link>
           </div>
 
@@ -158,3 +158,196 @@ export default function Hero() {
     </section>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// "use client";
+
+// import { useRef } from "react";
+// import Image from "next/image";
+// import Link from "next/link";
+// import dynamic from "next/dynamic";
+// import {
+//   motion,
+//   useMotionValue,
+//   useReducedMotion,
+//   useSpring,
+//   useTransform,
+// } from "framer-motion";
+// import { ArrowRight, ArrowUpRight } from "lucide-react";
+// import styles from "./Hero.module.css";
+
+// const Hero3D = dynamic(() => import("./Hero3D"), {
+//   ssr: false,
+//   loading: () => (
+//     <Image
+//       src="/hero/sculpture.png"
+//       alt=""
+//       fill
+//       priority
+//       sizes="(max-width: 1024px) 90vw, 46vw"
+//       className={styles.sculptureImg}
+//     />
+//   ),
+// });
+
+// const audience = ["Startups", "SMEs", "Enterprises"];
+
+// export default function Hero() {
+//   const sectionRef = useRef<HTMLElement>(null);
+//   const reduceMotion = useReducedMotion();
+
+//   const mouseX = useMotionValue(0);
+//   const mouseY = useMotionValue(0);
+//   const spring = { damping: 30, stiffness: 120 };
+//   const smoothX = useSpring(mouseX, spring);
+//   const smoothY = useSpring(mouseY, spring);
+
+//   const farX = useTransform(smoothX, [-0.5, 0.5], [-12, 12]);
+//   const farY = useTransform(smoothY, [-0.5, 0.5], [-12, 12]);
+
+//   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+//     if (reduceMotion || !sectionRef.current) return;
+//     const rect = sectionRef.current.getBoundingClientRect();
+//     mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+//     mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+//   };
+
+//   const handleMouseLeave = () => {
+//     mouseX.set(0);
+//     mouseY.set(0);
+//   };
+
+//   return (
+//     <section
+//       className={styles.hero}
+//       ref={sectionRef}
+//       onMouseMove={handleMouseMove}
+//       onMouseLeave={handleMouseLeave}
+//     >
+//       {/* Left vertical label */}
+//       <div className={styles.sideLabel} aria-hidden="true">
+//         <span className={styles.sideLine} />
+//         <span className={styles.sideText}>
+//           Your Business · Our Expertise · One Powerful Partner
+//         </span>
+//         <span className={styles.sideLine} />
+//       </div>
+
+//       {/* Text column */}
+//       <div className={styles.container}>
+//         <motion.div
+//           className={styles.textContent}
+//           initial={{ opacity: 0, y: 28 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.8, ease: "easeOut" }}
+//         >
+//           <p className={styles.eyebrow}>
+//             <span className={styles.eyebrowLine} />
+//             YOUR BUSINESS. OUR EXPERTISE. ONE POWERFUL PARTNER.
+//           </p>
+
+//           <h1 className={styles.heading}>
+//             Protect Your Business.
+//             <br />
+//             Simplify Your <span className={styles.headingAccent}>Operations.</span>
+//             <br />
+//             Accelerate Your Growth.
+//           </h1>
+
+//           <p className={styles.description}>
+//             OSS Consulting provides comprehensive business solutions across the
+//             United States, combining professional security surveillance,
+//             advanced technology, digital marketing and financial management
+//             services.
+//           </p>
+
+//           <p className={styles.descriptionSub}>
+//             From 24/7 remote camera monitoring to accounting, bookkeeping,
+//             payroll, taxation, web development and AI automation, we help
+//             businesses operate smarter and grow with confidence.
+//           </p>
+
+//           <div className={styles.ctaGroup}>
+//             <Link href="/contact" className={styles.primaryCta}>
+//               GET A FREE CONSULTATION <ArrowRight size={18} />
+//             </Link>
+//             <Link href="/services" className={styles.secondaryCta}>
+//               Explore Our Services <ArrowUpRight size={16} />
+//             </Link>
+//           </div>
+
+//           <div className={styles.progress} aria-hidden="true">
+//             <span className={styles.progressDot} />
+//             <span className={styles.progressFill} />
+//           </div>
+
+//           <div className={styles.audience}>
+//             <span className={styles.audienceLabel}>
+//               YOUR SUCCESS IS OUR BUSINESS
+//             </span>
+//             <ul className={styles.chips}>
+//               {audience.map((item) => (
+//                 <li key={item} className={styles.chip}>
+//                   {item}
+//                 </li>
+//               ))}
+//             </ul>
+//           </div>
+//         </motion.div>
+//       </div>
+
+//       {/* Visual column */}
+//       <motion.div
+//         className={styles.visual}
+//         initial={{ opacity: 0 }}
+//         animate={{ opacity: 1 }}
+//         transition={{ duration: 1.1, delay: 0.15 }}
+//       >
+//         <div className={styles.glow} aria-hidden="true" />
+
+//         <motion.div
+//           className={styles.layer}
+//           style={{ x: farX, y: farY }}
+//           aria-hidden="true"
+//         >
+//           <div className={styles.ringSolid} />
+//           <div className={styles.ringDashed} />
+//         </motion.div>
+
+//         <div className={styles.sculptureSlot}>
+//           <div
+//             className={styles.canvasWrap}
+//             role="img"
+//             aria-label="Abstract 3D knot orbited by four nodes, representing OSS's four practices"
+//           >
+//             <Hero3D />
+//           </div>
+//         </div>
+//       </motion.div>
+//     </section>
+//   );
+// }

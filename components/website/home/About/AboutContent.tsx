@@ -8,7 +8,7 @@ export default function AboutContent() {
       <div className={styles.heading}>
         <p className={styles.eyebrow}>
           <span className={styles.line} aria-hidden="true" />
-          ABOUT OSS
+          About OSS Consulting
         </p>
         <h2 id="about-heading" className={styles.title}>
           More Than Services. <em>A Partner</em> in Your Business Journey.

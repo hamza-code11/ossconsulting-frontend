@@ -23,7 +23,83 @@ export const servicesData: ServicesData = {
   ],
 
   services: [
-    // ===== Consulting =====
+    // ===== Zada Points Wali Services (Top) =====
+    {
+      id: "it-Solutions",
+      category: "technology",
+      icon: "camera",
+      image: img("photo-1557597774-9d273605dfa9"),
+      title: "Technology & IT Solutions",
+      text: "We help businesses embrace digital transformation through innovative technology and customized software solutions.",
+      features: [
+        "Website Design & Development",
+        "Mobile Application Development",
+        "Custom Software Development",
+        "AI Chatbots – Text & Voice",
+        "AI Business Automation",
+        "CRM Development & Integration",
+        "IT Consulting & Technical Support",
+        "Business Process Automation",
+        "Software Integration",
+      ],
+    },
+    {
+      id: "digital-marketing",
+      category: "growth",
+      icon: "megaphone",
+      image: img("photo-1460925895917-afdab827c52f"),
+      title: "Digital Marketing & Business Growth",
+      text: "Build your brand, reach your target audience and generate more business with strategic digital marketing solutions.",
+      features: [
+        "Social Media Management",
+        "Facebook & Instagram Advertising",
+        "Google Ads Management",
+        "Search Engine Optimization (SEO)",
+        "Content Creation",
+        "Brand Identity & Graphic Design",
+        "Lead Generation",
+        "Digital Marketing Strategy",
+        "Online Reputation Management",
+      ],
+    },
+    {
+      id: "business-operational-support",
+      category: "operations",
+      icon: "briefcase",
+      image: img("photo-1454165804606-c3d57bc86b40"),
+      title: "Business & Operational Support",
+      text: "We help businesses streamline everyday operations through dependable administrative and operational support.",
+      features: [
+        "Customer Support Services",
+        "Virtual Assistance",
+        "Data Entry & Management",
+        "Administrative Support",
+        "Business Process Outsourcing",
+        "Back-Office Operations",
+        "Document Management",
+        "Operational Consulting",
+      ],
+    },
+    {
+      id: "industries-we-serve",
+      category: "consulting",
+      icon: "building",
+      image: img("photo-1486406146926-c627a92ad1ab"),
+      title: "Industries We Serve",
+      text: "OSS Consulting provides specialized business solutions for a variety of industries, including:",
+      features: [
+        "Gas Stations & Convenience Stores",
+        "Retail Stores & Supermarkets",
+        "Restaurants & Hospitality",
+        "Healthcare & Medical Businesses",
+        "E-commerce Companies",
+        "Professional Service Providers",
+        "Small & Medium-Sized Businesses",
+        "Corporate Organizations",
+      ],
+    },
+
+    // ===== Medium Points Wali Services =====
     {
       id: "business-consultancy",
       category: "consulting",
@@ -51,8 +127,6 @@ export const servicesData: ServicesData = {
       text: "Practical training that builds skills and confidence across your teams.",
       features: ["Corporate workshops", "Skill development", "Custom programs"],
     },
-
-    // ===== Technology =====
     {
       id: "enterprise-solutions",
       category: "technology",
@@ -90,26 +164,6 @@ export const servicesData: ServicesData = {
       features: ["CRM setup", "Sales pipeline tracking", "Automation and reports"],
     },
     {
-      id: "camera-monitoring",
-      category: "technology",
-      icon: "camera",
-      image: img("photo-1557597774-9d273605dfa9"),
-      title: "Camera Monitoring",
-      text: "Reliable surveillance that keeps your premises secure around the clock.",
-      features: ["Remote live viewing", "Maintenance and support"],
-    },
-
-    // ===== Growth =====
-    {
-      id: "digital-marketing",
-      category: "growth",
-      icon: "megaphone",
-      image: img("photo-1460925895917-afdab827c52f"),
-      title: "Digital Marketing",
-      text: "Campaigns that put your business in front of the right people.",
-      features: ["Paid advertising", "Email campaigns", "Conversion tracking"],
-    },
-    {
       id: "social-media-management",
       category: "growth",
       icon: "share",
@@ -145,8 +199,6 @@ export const servicesData: ServicesData = {
       text: "A brand that looks professional and is easy to remember.",
       features: ["Logo and visual identity", "Brand guidelines", "Marketing creatives"],
     },
-
-    // ===== Operations =====
     {
       id: "customer-services",
       category: "operations",
@@ -165,20 +217,8 @@ export const servicesData: ServicesData = {
       text: "Professional duct cleaning for healthier air and efficient cooling.",
       features: ["Full duct inspection", "Deep cleaning and sanitising", "Residential and commercial"],
     },
-    {
-      id: "accounting",
-      category: "operations",
-      icon: "calculator",
-      image: img("photo-1554224155-6726b3ff858f"),
-      title: "Accounting Services",
-      text: "Comprehensive accounting solutions to help businesses manage financial records, track expenses and maintain accurate financial reporting.",
-      features: [
-        "Bookkeeping and financial records",
-        "Financial reporting",
-        "Accounts management",
-      ],
-    },
-    // ===== Technology =====
+
+    // ===== Kam Points Wali Services (Bottom) =====
     {
       id: "ai-ml-chatbots",
       category: "technology",
@@ -218,8 +258,6 @@ export const servicesData: ServicesData = {
         "Usability Testing",
       ],
     },
-
-    // ===== Growth =====
     {
       id: "graphic-designing",
       category: "growth",
@@ -231,6 +269,60 @@ export const servicesData: ServicesData = {
         "Logo Design",
         "Brand Identity",
         "Social Media Graphics",
+      ],
+    },
+
+
+    {
+      id: "camera-monitoring",
+      category: "technology",
+      icon: "camera",
+      image: img("photo-1557597774-9d273605dfa9"),
+      title: "Professional Security & Live Camera Monitoring",
+      text: "Protect your business with professional remote surveillance services from OSS Consulting. Our trained monitoring operators actively monitor business premises, identify suspicious activities and respond to potential security incidents.",
+      features: [
+        "24/7 Live Camera Monitoring",
+        "Remote CCTV Surveillance",
+        "Theft Detection & Prevention",
+        "Suspicious Activity Identification",
+        "Direct Line Communication",
+        "Void Transaction Updates",
+        "Incident Detection & Reporting",
+        "Multi-Location Camera Monitoring",
+        "Customized Surveillance Solutions",
+      ],
+    },
+    {
+      id: "accounting",
+      category: "operations",
+      icon: "calculator",
+      image: img("photo-1554224155-6726b3ff858f"),
+      title: "Accounting, Bookkeeping, Payroll & Taxation",
+      text: "Manage your business finances with confidence through OSS Consulting’s professional accounting and financial management support. We provide organized, reliable and efficient financial services to help businesses maintain accurate records, manage payroll and stay prepared for tax obligations. Let OSS Consulting simplify your financial operations so you can focus on running and growing your business. Tax preparation and filing services are provided subject to applicable professional qualifications, authorization and regulatory requirements.",
+      features: [
+        "Daily Transaction Recording",
+        "Monthly Bookkeeping",
+        "Financial Statement Preparation",
+        "Accounts Payable & Receivable",
+        "Bank & Account Reconciliation",
+        "Expense Tracking",
+        "Financial Reporting",
+        "Employee Payroll Processing",
+        "Salary Calculations",
+        "Payroll Records Management",
+        "Payroll Tax Calculations",
+        "Employee Payment Reporting",
+        "Payroll Documentation",
+        "Business Tax Preparation Support",
+        "Individual Tax Preparation Support",
+        "Federal & State Tax Filing Support",
+        "Sales Tax Support",
+        "Tax Documentation & Recordkeeping",
+        "Tax Planning Support",
+        "Monthly Financial Reports",
+        "Cash Flow Monitoring",
+        "Budgeting & Financial Organization",
+        "Business Financial Support",
       ],
     },
   ],
@@ -247,3 +339,4 @@ export const servicesData: ServicesData = {
     { title: "Support", text: "We stay involved to keep results improving." },
   ],
 };
+

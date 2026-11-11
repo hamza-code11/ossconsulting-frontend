@@ -3,7 +3,7 @@ import type { AboutData } from "@/types/about";
 // Sab text, numbers aur images yahan se badlo. Component ko haath lagane ki zaroorat nahi.
 export const aboutData: AboutData = {
   hero: {
-    eyebrow: "ABOUT OSS",
+    eyebrow: "About OSS Consulting",
     title: "One partner for every",
     accent: "business possibility.",
     description:
