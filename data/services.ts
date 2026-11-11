@@ -28,7 +28,7 @@ export const servicesData: ServicesData = {
       id: "it-Solutions",
       category: "technology",
       icon: "camera",
-      image: img("photo-1557597774-9d273605dfa9"),
+      image: img("photo-1551434678-e076c223a692"),
       title: "Technology & IT Solutions",
       text: "We help businesses embrace digital transformation through innovative technology and customized software solutions.",
       features: [
