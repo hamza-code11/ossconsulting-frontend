@@ -26,6 +26,8 @@ import {
   Wind,
   Workflow,
   Calculator,
+  MonitorCog,
+  ClipboardList,
   type LucideIcon,
 } from "lucide-react";
 import type { ServiceIcon, ServicesData } from "@/types/services";
@@ -51,6 +53,8 @@ const ICONS: Record<ServiceIcon, LucideIcon> = {
   headset: Headset,
   wind: Wind,
   calculator: Calculator,
+  "monitor-cog": MonitorCog,
+  "clipboard-list": ClipboardList,
 };
 
 const fadeUp: Variants = {

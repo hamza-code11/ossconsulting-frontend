@@ -17,6 +17,8 @@ export type ServiceIcon =
   | "palette"
   | "headset"
   | "wind"
+  | "monitor-cog"
+  | "clipboard-list"
   | "calculator";
 
 export interface ServicesHero {

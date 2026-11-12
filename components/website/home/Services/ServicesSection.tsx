@@ -21,6 +21,8 @@ import {
   Wind,
   Workflow,
   Calculator,
+  MonitorCog,
+  ClipboardList ,
   type LucideIcon,
 } from "lucide-react";
 import Image from "next/image";
@@ -48,6 +50,8 @@ const ICONS: Record<ServiceIcon, LucideIcon> = {
   headset: Headset,
   wind: Wind,
   calculator: Calculator,
+  "monitor-cog": MonitorCog,
+  "clipboard-list": ClipboardList,
 };
 
 // Sab data data/services.ts se aata hai
