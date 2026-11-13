@@ -23,6 +23,25 @@ export const servicesData: ServicesData = {
   ],
 
   services: [
+    {
+      id: "camera-monitoring",
+      category: "technology",
+      icon: "camera",
+      image: img("photo-1708807472445-d33589e6b090"),
+      title: "Professional Security & Live Camera Monitoring",
+      text: "Protect your business with professional remote surveillance services from OSS Consulting. Our trained monitoring operators actively monitor business premises, identify suspicious activities and respond to potential security incidents.",
+      features: [
+        "24/7 Live Camera Monitoring",
+        "Remote CCTV Surveillance",
+        "Theft Detection & Prevention",
+        "Suspicious Activity Identification",
+        "Direct Line Communication",
+        "Void Transaction Updates",
+        "Incident Detection & Reporting",
+        "Multi-Location Camera Monitoring",
+        "Customized Surveillance Solutions",
+      ],
+    },
     // ===== Zada Points Wali Services (Top) =====
     {
       id: "it-Solutions",
@@ -209,16 +228,7 @@ export const servicesData: ServicesData = {
       text: "A dedicated team that looks after your customers day to day.",
       features: ["Helpdesk support", "Call and chat handling", "Quality monitoring"],
     },
-    {
-      id: "hvac-duct-cleaning",
-      category: "operations",
-      icon: "wind",
-      image: img("photo-1621905251189-08b45d6a269e"),
-      title: "HVAC Duct Cleaning",
-      text: "Professional duct cleaning for healthier air and efficient cooling.",
-      features: ["Full duct inspection", "Deep cleaning and sanitising", "Residential and commercial"],
-    },
-
+    
     // ===== Kam Points Wali Services (Bottom) =====
     {
       id: "ai-ml-chatbots",
@@ -274,25 +284,6 @@ export const servicesData: ServicesData = {
     },
 
 
-    {
-      id: "camera-monitoring",
-      category: "technology",
-      icon: "camera",
-      image: img("photo-1557597774-9d273605dfa9"),
-      title: "Professional Security & Live Camera Monitoring",
-      text: "Protect your business with professional remote surveillance services from OSS Consulting. Our trained monitoring operators actively monitor business premises, identify suspicious activities and respond to potential security incidents.",
-      features: [
-        "24/7 Live Camera Monitoring",
-        "Remote CCTV Surveillance",
-        "Theft Detection & Prevention",
-        "Suspicious Activity Identification",
-        "Direct Line Communication",
-        "Void Transaction Updates",
-        "Incident Detection & Reporting",
-        "Multi-Location Camera Monitoring",
-        "Customized Surveillance Solutions",
-      ],
-    },
     {
       id: "accounting",
       category: "operations",
